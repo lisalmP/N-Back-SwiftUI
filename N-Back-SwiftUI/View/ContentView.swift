@@ -60,7 +60,7 @@ struct ContentView: View {
 
 
 
-struct ContentView_Previews:     {
+struct ContentView_Previews:  PreviewProvider   {
     static var previews: some View {
         Group{
             ForEach(["iPhone SE (3rd generation)", "iPhone 14 Pro Max"], id: \.self) { deviceName in

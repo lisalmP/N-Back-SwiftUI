@@ -7,22 +7,26 @@
 
 import Foundation
 import AVFoundation
+//import SwiftUI
 
 class N_Back_SwiftUIVM : ObservableObject  {
     let synthesizer = AVSpeechSynthesizer()
     var theModel : N_BackSwiftUIModel
     @Published var highScore : Int
+    @Published var gridsize : Int
+    @Published var grid : [MarkerView]
     
     init(){
         theModel = N_BackSwiftUIModel(count: 0)
         highScore = theModel.getHighScore()
+        gridsize = 9 // TODO: Ändra
+        grid = []
     }
     
     func newHighScoreValue(){
         theModel.addScore()
         highScore = theModel.getHighScore()
     }
-    
     
     func soundClick(){
         let theString: String = theModel.getString()
@@ -33,6 +37,13 @@ class N_Back_SwiftUIVM : ObservableObject  {
         theModel.resetNback()
     }
     
+    func createGrid()-> [MarkerView]{
+        for id in 0..<gridsize {
+            let marker = MarkerView(color: .blue, id: id)
+            grid.append(marker)
+        }
+        return grid
+    }
     
     // IO handling
     
@@ -43,9 +54,3 @@ class N_Back_SwiftUIVM : ObservableObject  {
     }
     
 }
-
-
-
-
-
-

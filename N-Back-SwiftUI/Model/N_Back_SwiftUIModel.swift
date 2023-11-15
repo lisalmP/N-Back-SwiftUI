@@ -9,9 +9,14 @@ import Foundation
 
 struct N_BackSwiftUIModel {
     private var count : Int
+    private var gridSize = 9
+
     
     init(count: Int) {
         self.count = count
+    }
+    func getGridSize() -> Int{
+        return gridSize
     }
     
     func getString() -> String{
@@ -28,6 +33,7 @@ struct N_BackSwiftUIModel {
       
     mutating func resetNback(){
         let Nback = create(20, 9, 20, 2)
+        
         
         for i in 1...3 {
             let test:Int32 = Int32(i)
