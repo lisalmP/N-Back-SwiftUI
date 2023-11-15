@@ -16,7 +16,6 @@ struct ImageIconView: View {
         let gridSize = theViewModel.gridsize
         let gridCount = Int(sqrt(Double(gridSize)))
         
-        
         VStack {
             
             Text ("Visual n-back") //TODO: Replace with actual number
@@ -24,9 +23,10 @@ struct ImageIconView: View {
     
             Spacer()
             
-            theViewModel.grid
+            grid[1]
             
-           // ForEach(0..<gridCount, id: \.self) { row in
+           // Start with fixing the loop
+           //ForEach(0..<gridCount, id: \.self) { row in
            //             HStack {
            //                 ForEach(0..<gridCount, id: \.self) { col in
            //                     let index = row * gridCount + col

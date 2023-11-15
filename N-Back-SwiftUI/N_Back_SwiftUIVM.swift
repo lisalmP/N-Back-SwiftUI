@@ -38,11 +38,12 @@ class N_Back_SwiftUIVM : ObservableObject  {
     }
     
     func createGrid()-> [MarkerView]{
+        var gridNew = [MarkerView] ()
         for id in 0..<gridsize {
             let marker = MarkerView(color: .blue, id: id)
-            grid.append(marker)
+            gridNew.append(marker)
         }
-        return grid
+        return gridNew
     }
     
     // IO handling
