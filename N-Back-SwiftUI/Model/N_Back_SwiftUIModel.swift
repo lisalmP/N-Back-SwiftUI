@@ -9,12 +9,14 @@ import Foundation
 
 struct N_BackSwiftUIModel {
     private var count : Int
-    private var gridSize = 9
-
+    private var gridSize = 9 // TODO: Ändra
+    var Nback : OpaquePointer!
     
     init(count: Int) {
         self.count = count
+        
     }
+    
     func getGridSize() -> Int{
         return gridSize
     }
@@ -31,15 +33,20 @@ struct N_BackSwiftUIModel {
         count += 1
     }
       
-    mutating func resetNback(){
-        let Nback = create(20, 9, 20, 2)
+    
+    mutating func resetNback() -> [Int32] {
+        var indices = [Int32]()
+        Nback = create(20, 9, 20, 2)
         
-        
-        for i in 1...3 {
-            let test:Int32 = Int32(i)
-            print("aValue: \(getIndexOf(Nback, test))")
+        for i in 0..<20 {
+            let index = Int32(i)
+            let values = getIndexOf(Nback, index)
+            indices.append(values)
+            print("Value at index \(index): \(getIndexOf(Nback, index))")
         }
         
+        return indices
     }
+
    
 }

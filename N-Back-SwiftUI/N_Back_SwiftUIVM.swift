@@ -19,7 +19,7 @@ class N_Back_SwiftUIVM : ObservableObject  {
     init(){
         theModel = N_BackSwiftUIModel(count: 0)
         highScore = theModel.getHighScore()
-        gridsize = 9 // TODO: Ändra
+        gridsize = 9
         grid = []
     }
     
@@ -33,19 +33,17 @@ class N_Back_SwiftUIVM : ObservableObject  {
         speech(aString: theString)
     }
     
-    func imageClick(){
-        theModel.resetNback()
-    }
-    
-    func createGrid()-> [MarkerView]{
-        var gridNew = [MarkerView] ()
-        for id in 0..<gridsize {
-            let marker = MarkerView(color: .blue, id: id)
-            gridNew.append(marker)
+    func createGrid() {
+        grid = (0..<gridsize).map { id in
+            MarkerView(color: .blue, id: id)
         }
-        return gridNew
     }
-    
+    func startGame() -> [Int32]{
+        let indices = theModel.resetNback()
+        return indices
+    }
+
+
     // IO handling
     
     func speech(aString: String){

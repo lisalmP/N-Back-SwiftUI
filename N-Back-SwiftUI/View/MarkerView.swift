@@ -7,28 +7,36 @@
 
 import SwiftUI
 
-struct MarkerView: View {
+struct MarkerView: View, Hashable, Equatable {
     let color: Color
-    let id : Int
-    
+    let id: Int
+
     var body: some View {
-        
-        VStack{
+        VStack {
             Rectangle()
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .aspectRatio(1, contentMode: .fit)
-                .foregroundColor(.blue)
+                .foregroundColor(color) // Use the provided color
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color.white, lineWidth: 10)
                 )
         }
-        
+    }
+
+    // Implement Hashable and Equatable conformance
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+
+    static func == (lhs: MarkerView, rhs: MarkerView) -> Bool {
+        return lhs.id == rhs.id
     }
 }
 
 struct MarkerView_Previews: PreviewProvider {
     static var previews: some View {
-        MarkerView(color : .blue, id: 1)
+        MarkerView(color: .blue, id: 1)
     }
 }
+
